@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/queries', function(){
+    //$events = \App\Models\Event::all();
+    //return $events;
+    $event = \App\Models\Event::where('id',1)->first();
+    return $event;
+});
