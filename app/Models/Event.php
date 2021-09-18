@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $fillable = ['title', 'description', 'body', 'slug', 'start_event'];
     use HasFactory;
+    
+    protected $fillable = ['title', 'description', 'body', 'slug', 'start_event'];
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }    
 }
