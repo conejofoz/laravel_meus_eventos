@@ -19,7 +19,7 @@ class CreateProfilesTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
             $table->text('about')->nullable();
-            $table->string('phone', 11)->nullable();
+            $table->string('phone', 15)->nullable();
             $table->text('social_networks');
 
             $table->timestamps();
