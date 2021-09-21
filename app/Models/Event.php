@@ -11,6 +11,8 @@ class Event extends Model
     
     protected $fillable = ['title', 'description', 'body', 'slug', 'start_event'];
 
+    protected $dates = ['start_event']; //para poder usar o format do carbon
+
     public function photos()
     {
         return $this->hasMany(Photo::class);

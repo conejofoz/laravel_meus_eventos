@@ -19,6 +19,10 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$event->title}}</h5>
                             <strong>Acontece em: {{$event->start_event}}</strong>
+                            <strong>Acontece em: {{$event->start_event->format('d/m/Y H:i:s')}}</strong>
+                            <strong>Acontece em: {{ date('d/M/Y', strtotime($event->start_event ))}}</strong>
+                            <a href="/eventos/{{$event->slug}}" class="btn btn-default">Ver evento</a>
+                            
                             <p class="card-text">{{$event->description}}</p>
                         </div>
                     </div>
