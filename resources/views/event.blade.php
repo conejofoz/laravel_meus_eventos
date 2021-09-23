@@ -39,7 +39,7 @@
                 @if ($event->photos->count())
                     <div class="tab-pane fade pt-5" id="photos" role="tabpanel" aria-labelledby="profile-tab">
 
-                        @dd($event->photos)
+                        {{-- @dd($event->photos) --}}
                         
                         <div class="row">
                             @foreach ($event->photos as $photo)

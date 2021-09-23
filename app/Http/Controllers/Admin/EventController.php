@@ -1,16 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Event;
 
 
 class EventController extends Controller
 {
+
+
     public function index(){
-        return Event::all();
+
+       //$events = Event::all();
+       $events = Event::paginate(10);
+
+        return view('admin.events.index', compact('events'));
+
     }
+
+
 
     public function store(){
         $title = "Evento pelo eloquent" . rand(1, 100);
@@ -24,6 +34,15 @@ class EventController extends Controller
 
         return Event::create($event);
     }
+
+
+    public function create()
+    {
+
+        return view('admin.events.create');
+    }
+
+
 
     public function update($event){
         $title = "Evento pelo eloquent" . rand(1, 1000);
@@ -42,6 +61,8 @@ class EventController extends Controller
         return $event; //retorna o objeto
 
     }
+
+
 
     public function destroy($event){
         $event = Event::findOrFail($event);
