@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'] );
 
 
-Route::get('/eventos/{slug}', [\App\Http\Controllers\HomeController::class, 'show']);
+Route::get('/eventos/{slug}', [\App\Http\Controllers\HomeController::class, 'show'])->name('event.single');
 
 
 Route::get('/queries', function(){
