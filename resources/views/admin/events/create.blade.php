@@ -20,48 +20,40 @@
                 @csrf
                 <div class="form-group">
                     <label for="">Título Evento</label>
-                    <input type="text" class="form-control @if($errors->has('title')) is-invalid @endif" name="title">
-                    @if ($errors->has('title'))
+                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title">
+                    @error('title')
                         <div class="invalid-feedback">
-                            @foreach ($errors->get('title') as $error)
-                                {{$error}}
-                            @endforeach
+                            {{$message}}
                         </div>
-                    @endif
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="">Descrição Rápida Evento</label>
-                    <input type="text" class="form-control @if($errors->has('description')) is-invalid @endif" name="description">
-                    @if ($errors->has('description'))
+                    <input type="text" class="form-control @error('description') is-invalid @enderror" name="description">
+                    @error('description')
                         <div class="invalid-feedback">
-                            @foreach ($errors->get('title') as $error)
-                                {{$error}}
-                            @endforeach
+                            {{$message}}
                         </div>
-                    @endif
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="">Fale mais sobre o evento</label>
-                    <textarea class="form-control @if($errors->has('body')) is-invalid @endif" name="body" id="" cols="30" rows="10"></textarea>
-                    @if ($errors->has('body'))
+                    <textarea class="form-control @error('body') is-invalid @enderror" name="body" id="" cols="30" rows="10"></textarea>
+                    @error('body')
                         <div class="invalid-feedback">
-                            @foreach ($errors->get('title') as $error)
-                                {{$error}}
-                            @endforeach
+                            {{$message}}
                         </div>
-                    @endif
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="">Quando vai acontecer?</label>
-                    <input type="text" class="form-control @if($errors->has('start_event')) is-invalid @endif" name="start_event">
-                    @if ($errors->has('start_event'))
+                    <input type="text" class="form-control @error('start_event') is-invalid @enderror" name="start_event">
+                    @error('start_event')
                         <div class="invalid-feedback">
-                            @foreach ($errors->get('title') as $error)
-                                {{$error}}
-                            @endforeach
+                            {{$message}}
                         </div>
                     @endif
                 </div>

@@ -30,6 +30,10 @@ class EventController extends Controller
             'description' => 'required',
             'body' => 'required',
             'start_event' => 'required',
+        ],
+        [
+            'required'  => 'Este campo é obrigatório',
+            'min'       => 'Tamanho mínimo permitido :min'
         ]);
 
         $event = request()->all();
