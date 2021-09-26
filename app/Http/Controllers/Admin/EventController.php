@@ -24,6 +24,13 @@ class EventController extends Controller
 
 
 
+    public function show($event)
+    {
+        
+    }
+
+
+
     public function store(EventRequest $request)
     {
         

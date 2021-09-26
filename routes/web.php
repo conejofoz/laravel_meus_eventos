@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'] );
 
 
-Route::get('/eventos/{slug}', [\App\Http\Controllers\HomeController::class, 'show'])->name('event.single');
+/* Route::get('/eventos/{slug}', [\App\Http\Controllers\HomeController::class, 'show'])->name('event.single');
 
 
 Route::get('/queries', function(){
@@ -42,7 +42,7 @@ Route::get('/salvar', function(){
     } else {
         return 'Erro';
     }
-});
+}); */
 
 
 /**
@@ -57,7 +57,7 @@ Route::get('/admin/events/destroy/{event}', [\App\Http\Controllers\Admin\EventCo
  */
 
 Route::prefix('/admin')->name('admin.')->group(function(){
-    Route::prefix('/events')->name('events.')->group(function(){
+    /* Route::prefix('/events')->name('events.')->group(function(){
         Route::get('/', [\App\Http\Controllers\Admin\EventController::class, 'index'])->name('index');
         Route::post('/store', [\App\Http\Controllers\Admin\EventController::class, 'store'])->name('store');
         Route::get('/create', [\App\Http\Controllers\Admin\EventController::class, 'create'])->name('create');
@@ -65,7 +65,10 @@ Route::prefix('/admin')->name('admin.')->group(function(){
         Route::get('/{event}/edit', [\App\Http\Controllers\Admin\EventController::class, 'edit'])->name('edit');
         Route::get('/destroy/{event}', [\App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('destroy');
 
-    });
+    }); */
+
+    Route::resource('events', \App\Http\Controllers\Admin\EventController::class);
+
  });
 
 
