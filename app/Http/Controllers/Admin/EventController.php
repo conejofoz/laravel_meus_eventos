@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Event;
@@ -23,18 +24,9 @@ class EventController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        $request->validate([
-            'title' => 'required|min:10',
-            'description' => 'required',
-            'body' => 'required',
-            'start_event' => 'required',
-        ],
-        [
-            'required'  => 'Este campo é obrigatório',
-            'min'       => 'Tamanho mínimo permitido :min'
-        ]);
+        
 
         $event = request()->all();
 
