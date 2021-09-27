@@ -72,6 +72,12 @@ Route::prefix('/admin')->name('admin.')->group(function(){
  });
 
 
+
+ /* Route::resources([
+     'events', \App\Http\Controllers\Admin\EventController::class,
+     'events.photos', \App\Http\Controllers\Admin\EventPhotoController::class
+    ]); */
+
  
 
  
