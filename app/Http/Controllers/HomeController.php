@@ -7,6 +7,7 @@ use App\Models\Event;
 
 class HomeController extends Controller
 {
+    
     public function index()
     {
         
