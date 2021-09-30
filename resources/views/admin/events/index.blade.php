@@ -37,7 +37,7 @@
                     </tr>
                     @empty
                         <tr>
-                            <td colspan="3">Nenum Evento encontrado!</td>
+                            <td colspan="4">Nenum Evento encontrado!</td>
                         </tr>
                     @endforelse
                 </tbody>

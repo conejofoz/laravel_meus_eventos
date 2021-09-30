@@ -61,4 +61,11 @@ class User extends Authenticatable
     }
 
 
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'owner_id'); //informado o segundo parametro pq o nome do dono do evento na tabela users 
+                                                        //é diferente de user_id
+    }
+
+
 } //endclass

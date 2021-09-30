@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         
         //CHAMAR CADA SEEDER SEPARADAMENTE
         $this->call(UsersTableSeeder::class);
-        $this->call(EventsTableSeeder::class);
+        //$this->call(EventsTableSeeder::class);
     }
 }
