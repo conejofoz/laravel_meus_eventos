@@ -56,7 +56,7 @@ Route::get('/admin/events/{event}/edit', [\App\Http\Controllers\Admin\EventContr
 Route::get('/admin/events/destroy/{event}', [\App\Http\Controllers\Admin\EventController::class, 'destroy']);
  */
 
-Route::prefix('/admin')->name('admin.')->group(function(){
+Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function(){
     /* Route::prefix('/events')->name('events.')->group(function(){
         Route::get('/', [\App\Http\Controllers\Admin\EventController::class, 'index'])->name('index');
         Route::post('/store', [\App\Http\Controllers\Admin\EventController::class, 'store'])->name('store');
@@ -84,4 +84,4 @@ Route::prefix('/admin')->name('admin.')->group(function(){
  
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
