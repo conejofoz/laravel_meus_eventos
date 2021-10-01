@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     <label for="">Quando vai acontecer?</label>
-                    <input type="text" class="form-control" name="start_event" value="{{$event->start_event}}">
+                    <input type="text" class="form-control" name="start_event" value="{{$event->start_event->format('d/m/Y H:i')}}">
                 </div>
 
                 <button type="submit" class="btn btn-lg btn-success">Editar Evento</button>
@@ -45,4 +45,16 @@
         </div>
     </div>
     
+@endsection
+
+
+
+
+{{-- esse bloco js será inserido no app.blade.pp --}}
+@section('scripts')
+    <script>
+        let el = document.querySelector('input[name=start_event]');
+        let im = new Inputmask('99/99/9999 99:99');
+        im.mask(el);
+    </script>
 @endsection

@@ -44,6 +44,19 @@ class Event extends Model
     }
 
 
+    /**
+     * Formatar a data para inserir no banco
+     *  - Criar uma instância do DateTime em cima do valor que foi digitado lá no frontend
+     *  - - respeitando o padrão de máscara que foi usado lá
+     *  - - - primeiro parâmetro é o formato que foi usado no front e o segundo é o valor que foi digitado lá no front
+     * - Usar o format para transformar essa instância do DateTime no formato americano para inserir no banco
+     */
+    public function setStartEventAttribute($value)
+    {
+        $this->attributes['start_event'] = (\DateTime::createFromFormat('d/m/Y H:i', $value))->format('Y-m-d H:i');
+    }
+
+
 
 
     public function photos()

@@ -193,5 +193,9 @@
 {{-- app.js já tem o jquery --}}
 <script src="{{asset('js/app.js')}}"></script>
 
+
+{{-- bloco para inserir o javascript das views que extendem essa --}}
+@yield('scripts')
+
 </body>
 </html>
