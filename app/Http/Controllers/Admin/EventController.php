@@ -47,7 +47,8 @@ class EventController extends Controller
 
         $event = request()->all();
 
-        $event['slug'] = Str::slug($event['title']);
+        //$event['slug'] = Str::slug($event['title']); //vai ser criado pelo mutator agora
+        $event['slug'] = $event['title'];
 
         //Event::create($event);
         $event = $this->event->create($event);

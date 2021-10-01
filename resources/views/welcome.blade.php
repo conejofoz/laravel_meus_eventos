@@ -24,6 +24,13 @@
                             <a href="{{route('event.single', ['slug' => $event->slug])}}" class="btn btn-default">Ver evento</a>
                             
                             <p class="card-text">{{$event->description}}</p>
+
+                            @if ($event->owner)
+                                <p>Evento organizado por <a href="#">{{$event->owner->name}}</a> </p>
+                            @endif
+
+                            {{-- Exibindo owner agora com o accessor...foi eliminado o if acima --}}
+                            <p>Evento organizado por <a href="#">{{$event->owner_name}}</a> </p>
                         </div>
                     </div>
                 </div>

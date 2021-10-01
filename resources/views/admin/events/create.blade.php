@@ -20,7 +20,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="">Título Evento</label>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title">
+                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{old('title')}}">
                     @error('title')
                         <div class="invalid-feedback">
                             {{$message}}
