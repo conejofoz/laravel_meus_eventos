@@ -9,6 +9,9 @@
     <title>@yield('title') Eventos App</title>
 </head>
 <body>
+
+    @include('layouts.navbar')
+
     <div class="container">
         @yield('content')
     </div>
