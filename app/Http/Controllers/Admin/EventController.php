@@ -18,6 +18,8 @@ class EventController extends Controller
     public function __construct(Event $event)
     {
         $this->event = $event;
+
+        $this->middleware('user.can.event.edit')->only('edit', 'update');
     }
 
 
