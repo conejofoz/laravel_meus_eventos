@@ -17,6 +17,22 @@ class HomeController extends Controller
     
     public function index()
     {
+        $events = $this->event->orderBy('start_event', 'DESC');
+
+        if($query = request()->query('s'))
+        {
+            $events->where('title', 'LIKE', '%' . $query . '%');
+        }
+        
+        $events = $events->paginate(15);
+
+        //return view('welcome', ['events' => $events]);
+        return view('home', compact('events'));
+
+    }
+
+    public function index_old()
+    {
         
         //$events = Event::all();
         $events = $this->event->orderBy('start_event', 'DESC')->paginate();
