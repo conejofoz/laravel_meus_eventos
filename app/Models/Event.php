@@ -73,4 +73,17 @@ class Event extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+    public function getEventsHome($byCategory = null)
+    {
+        $events = $byCategory ? $byCategory : $this->orderBy('start_event', 'DESC');
+
+        $events->when($search = request()->query('s'), function($queryBuilder) use($search){
+            return $queryBuilder->where('title', 'LIKE', '%' . $search . '%');
+        });
+
+        return $events;
+
+    }
 }
