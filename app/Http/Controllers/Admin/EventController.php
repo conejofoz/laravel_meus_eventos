@@ -55,7 +55,17 @@ class EventController extends Controller
         
 
         $event = request()->all();
-        $event['banner'] = ($request->file('banner')->store('banner', 'public'));
+        
+        //se o input file vier vazio da erro no store
+        //$event['banner'] = ($request->file('banner')->store('banner', 'public'));
+        
+        /**
+         * verifica se o input foi preenchido e ao mesmo tempo atribui o resultado a variável banner
+         * cria a chave banner no array event e atribui com o retorno
+         * do método store que já é o nome do arquivo gerado com a pasta
+         */
+        if($banner = $request->file('banner'))
+            $event['banner'] = $banner->store('banner', 'public');
 
         //$event['slug'] = Str::slug($event['title']); //vai ser criado pelo mutator agora
         $event['slug'] = $event['title'];

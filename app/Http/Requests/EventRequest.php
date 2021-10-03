@@ -31,6 +31,7 @@ class EventRequest extends FormRequest
             'description' => 'required',
             'body' => 'required',
             'start_event' => 'required',
+            'banner' => 'image',
         ];
     }
 
@@ -43,7 +44,8 @@ class EventRequest extends FormRequest
     {
         return [
             'required'  => 'Este campo é obrigatório',
-            'min'       => 'Tamanho mínimo permitido :min'
+            'min'       => 'Tamanho mínimo permitido :min',
+            'image'     => 'O arquivo informado não é uma imagem válida!',
         ];
     }
 }
