@@ -22,9 +22,10 @@ class HomeController extends Controller
         
         $events = $this->event->getEventsHome($byCategory)->paginate(15);
 
-        $categories = Category::all(['name', 'slug']);
+        //foi para o appServicePrivider para compartilhar com as outras views
+        //$categories = Category::all(['name', 'slug']);
         
-        return view('home', compact('events', 'categories'));
+        return view('home', compact('events'));
     }
     
 
