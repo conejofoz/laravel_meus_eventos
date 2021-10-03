@@ -45,9 +45,17 @@ class EventController extends Controller
 
     public function store(EventRequest $request)
     {
+
+        //receber a imagem
+        //$banner = $request->file('banner');
+        //tenta adivinhar o tipo do arquivo
+        //dd($banner->guessExtension());
+        //faz upload do arquivo na pasta banner
+        //dd($banner->store('banner', 'public'));
         
 
         $event = request()->all();
+        $event['banner'] = ($request->file('banner')->store('banner', 'public'));
 
         //$event['slug'] = Str::slug($event['title']); //vai ser criado pelo mutator agora
         $event['slug'] = $event['title'];

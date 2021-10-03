@@ -16,7 +16,7 @@
     
     <div class="row">
         <div class="col-12">
-            <form action="{{route('admin.events.store')}}" method="post">
+            <form action="{{route('admin.events.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="">Título Evento</label>
@@ -56,6 +56,11 @@
                             {{$message}}
                         </div>
                     @endif
+                </div>
+
+                <div class="form-group">
+                    <label>Carregar um Banner para o Evento</label>
+                    <input type="file" name="banner" id="" class="form-control">
                 </div>
 
                 <button type="submit" class="btn btn-lg btn-success">Criar Evento</button>

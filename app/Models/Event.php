@@ -10,7 +10,7 @@ class Event extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['title', 'description', 'body', 'slug', 'start_event'];
+    protected $fillable = ['title', 'description', 'body', 'slug', 'start_event', 'banner'];
 
     protected $dates = ['start_event']; //para poder usar o format do carbon
 
@@ -82,6 +82,18 @@ class Event extends Model
         $events->when($search = request()->query('s'), function($queryBuilder) use($search){
             return $queryBuilder->where('title', 'LIKE', '%' . $search . '%');
         });
+
+
+
+        /**
+         * Eventos com data maior ou igual a hoje
+         */
+
+        //Usando DATE do banco... não é recomendado pois se outro banco não tiver essa função já era
+        //$events->whereRaw('DATE(start_event) >= DATE(NOW())');
+
+        //whereDate
+        $events->whereDate('start_event', '>=', now());
 
         return $events;
 
