@@ -7,6 +7,8 @@ use App\Http\Requests\EventRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Event;
+use Illuminate\Support\Facades\Storage;
+
 //use App\Models\User;
 
 
@@ -54,7 +56,7 @@ class EventController extends Controller
         //dd($banner->store('banner', 'public'));
         
 
-        $event = request()->all();
+        $event = $request->all();
         
         //se o input file vier vazio da erro no store
         //$event['banner'] = ($request->file('banner')->store('banner', 'public'));
@@ -113,12 +115,23 @@ class EventController extends Controller
 
 
 
-    public function update($event)
+    public function update($event, EventRequest $request)
     {
 
-        $event = Event::findOrFail($event);
+        $event = $this->event->findOrFail($event);
+        $eventData = $request->all();
 
-        $event->update(request()->all());
+        if($banner = $request->file('banner'))
+        {
+            if(Storage::disk('public')->exists($event->banner))
+            {
+                Storage::disk('public')->delete($event->banner);
+            }
+
+            $eventData['banner'] = $banner->store('banner', 'public');
+        }
+
+        $event->update($eventData);
 
         return redirect()->back();
 

@@ -16,7 +16,7 @@
     
     <div class="row">
         <div class="col-12">
-            <form action="{{ route('admin.events.update', ['event' => $event->id])}}" method="post">
+            <form action="{{ route('admin.events.update', ['event' => $event->id])}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -37,6 +37,30 @@
                 <div class="form-group">
                     <label for="">Quando vai acontecer?</label>
                     <input type="text" class="form-control" name="start_event" value="{{$event->start_event->format('d/m/Y H:i')}}">
+                </div>
+
+                <div class="form-group my-5">
+                    <div class="row">
+                        <div class="col-12">
+                            Banner Evento
+                            <hr>
+                        </div>
+                        <div class="col-4">
+                            <img src="{{asset('storage/' . $event->banner)}}" alt="Banner do Evento {{$event->title}}" class="img-fluid">
+                        </div>
+                        <div class="col-8">
+                            <label>Carregar um Banner para o Evento</label>
+                            <input type="file" name="banner" id="" class="form-control @error('banner') is-invalid @enderror">
+                            @error('banner')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-12">
+                            <hr>
+                        </div>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-lg btn-success">Editar Evento</button>
