@@ -69,6 +69,9 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function(){
 
     Route::resource('events', \App\Http\Controllers\Admin\EventController::class);
 
+    Route::resource('events.photos', \App\Http\Controllers\Admin\EventPhotoController::class)
+    ->only(['index', 'store', 'destroy']);
+
  });
 
 
