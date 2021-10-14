@@ -68,4 +68,11 @@ class User extends Authenticatable
     }
 
 
+    public function tickets() //bilhetes - event
+    {
+        return $this->belongsToMany(Event::class)
+        //->as('outro_nome_tabela_pivot')
+        ->withPivot('reference', 'status'); //mostrando as colunas extras da tabela pivot;
+    }
+
 } //endclass

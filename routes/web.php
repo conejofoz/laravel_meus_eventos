@@ -18,6 +18,13 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('h
 
 
  Route::get('/eventos/{slug}', [\App\Http\Controllers\HomeController::class, 'show'])->name('event.single');
+
+Route::prefix('/enrollment')->name('enrollment.')->group(function(){
+    Route::get('/start/{event:slug}', [\App\Http\Controllers\EnvollmentController::class, 'start'])->name('start');
+    Route::get('/confirm', [\App\Http\Controllers\EnvollmentController::class, 'confirm'])->name('confirm')->middleware('auth');
+    Route::get('proccess', [\App\Http\Controllers\EnvollmentController::class, 'proccess'])->name('proccess')->middleware('auth');
+});
+
 /*
 
 Route::get('/queries', function(){

@@ -75,6 +75,13 @@ class Event extends Model
     }
 
 
+    public function enrolleds() //inscritos - user
+    {
+        return $this->belongsToMany(User::class)
+        ->withPivot('reference', 'status'); //mostrando as colunas extras da tabela pivot
+    }
+
+
     public function getEventsHome($byCategory = null)
     {
         $events = $byCategory ? $byCategory : $this->orderBy('start_event', 'DESC');
