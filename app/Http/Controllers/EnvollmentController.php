@@ -29,7 +29,23 @@ class EnvollmentController extends Controller
 
     public function proccess()
     {
-        dd('chegammos aqui');
+        if(!session('enrollment'))
+            return redirect()->route('home');
+
+        $event = Event::find(session('enrollment'));
+
+        $event->enrolleds()->attach(
+            [
+                auth()->id() => [
+                    'reference' => uniqid(),
+                    'status' => 'ACTIVE'
+                ]
+            ]
+        );
+
+        session()->forget('enrollment');
+
+        return redirect()->route('event.single', $event->slug);
     }
 
 
