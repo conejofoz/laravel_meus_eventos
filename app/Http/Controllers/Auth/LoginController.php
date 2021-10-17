@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -20,7 +23,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+    
     /**
      * Where to redirect users after login.
      *
@@ -37,4 +40,32 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+    /**
+     * O login tem como comportamento padrão redicionar o usuário para o local anterior ao login
+     * Para mudar esse comportamento sobreescrever o método authenticated
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        if(session('enrollment'))
+        {
+            return redirect()->route('enrollment.confirm');
+        }
+    }
+
+
+    /**
+     * O logout por padrão redireciona para a home
+     * para mudar o comportamento sobrescrever o método logout fazendo o
+     * logout manual usaldo a facade Auth
+     * use Illuminate\Support\Facades\Auth;
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route('home');
+    }
+
+
 }
