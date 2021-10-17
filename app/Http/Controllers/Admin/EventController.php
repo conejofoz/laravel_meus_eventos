@@ -7,6 +7,7 @@ use App\Http\Requests\EventRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Event;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 //use App\Models\User;
@@ -78,6 +79,11 @@ class EventController extends Controller
         $event->owner()->associate(auth()->user());
         $event->save();
 
+        if($categories = $request->get('categories'))
+        {
+            $event->categories()->sync($categories);
+        }
+
         return redirect()->route('admin.events.index');
 
     }
@@ -100,16 +106,21 @@ class EventController extends Controller
     public function create()
     {
 
-        return view('admin.events.create');
+        $categories = Category::all(['id', 'name']);
+
+        return view('admin.events.create', compact('categories'));
     }
 
 
 
     public function edit($event)
+    //public function edit(Event $event)
     {
 
+        $categories = Category::all(['id', 'name']);
+
         $event = Event::findOrFail($event);
-        return view('admin.events.edit', compact('event'));
+        return view('admin.events.edit', compact('event', 'categories'));
     }
 
 
@@ -132,6 +143,12 @@ class EventController extends Controller
         }
 
         $event->update($eventData);
+
+
+        if($categories = $request->get('categories'))
+        {
+            $event->categories()->sync($categories);
+        }
 
         return redirect()->back();
 

@@ -63,6 +63,21 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label></label>
+                    <select class="form-control" multiple name="categories[]">
+                        @foreach ($categories as $category)
+                            <option value="{{$category->id}}"
+                                
+                                @if($event->categories->contains($category))
+                                    selected
+                                @endif
+                                
+                                >{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-lg btn-success">Editar Evento</button>
 
             </form>
