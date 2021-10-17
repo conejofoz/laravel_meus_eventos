@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserEnrollmentMail;
 use Illuminate\Http\Request;
 use App\Models\Event;
-
+use Illuminate\Support\Facades\Mail;
 
 class EnvollmentController extends Controller
 {
+
     public function start(Event $event)
     {
         session()->put('enrollment', $event->id);
 
         return redirect()->route('enrollment.confirm');
     }
+
 
 
     public function confirm()
@@ -27,6 +30,7 @@ class EnvollmentController extends Controller
     }
 
 
+    
     public function proccess()
     {
         if(!session('enrollment'))
@@ -44,6 +48,11 @@ class EnvollmentController extends Controller
         );
 
         session()->forget('enrollment');
+
+        $user = auth()->user();
+
+        Mail::to($user)
+        ->send(new UserEnrollmentMail($user, $event));
 
         return redirect()->route('event.single', $event->slug);
     }
