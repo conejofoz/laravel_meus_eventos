@@ -26,6 +26,10 @@ class EnvollmentController extends Controller
 
         $event = Event::find(session('enrollment'));
         //dd($event);
+
+        //se o usuário já está inscrito no evento
+        if($event->enrolleds->contains(auth()->user())) return redirect()->route('event.single', $event->slug);
+
         return view('enrollment-confirm', compact('event'));
     }
 
@@ -37,10 +41,11 @@ class EnvollmentController extends Controller
             return redirect()->route('home');
 
         $event = Event::find(session('enrollment'));
+        $user = auth()->user();
 
         $event->enrolleds()->attach(
             [
-                auth()->id() => [
+                $user->id => [
                     'reference' => uniqid(),
                     'status' => 'ACTIVE'
                 ]
@@ -49,10 +54,9 @@ class EnvollmentController extends Controller
 
         session()->forget('enrollment');
 
-        $user = auth()->user();
 
-        Mail::to($user)
-        ->send(new UserEnrollmentMail($user, $event));
+        //Mail::to($user)
+        //->send(new UserEnrollmentMail($user, $event));
 
         return redirect()->route('event.single', $event->slug);
     }
