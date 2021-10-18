@@ -158,7 +158,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 
-                    <a href="#" class="dropdown-item">Meu Perfil</a>
+                    <a href="{{route('admin.profile.edit')}}" class="dropdown-item">Meu Perfil</a>
 
                     <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout').submit();">Sair</a>
                     <form action="{{route('logout')}}" method="post" id="logout">

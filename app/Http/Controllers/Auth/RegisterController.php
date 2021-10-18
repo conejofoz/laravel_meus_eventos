@@ -65,11 +65,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        //return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        //só para não dar erro na view, se não tiver profile cria um vazio
+        $user->profile()->create(['about' => '']);
+        return $user;
     }
 
 
