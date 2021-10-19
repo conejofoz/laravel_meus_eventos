@@ -61,8 +61,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label></label>
-                    <input type="text" class="form-control" name="">
+                    <label>Redes Sociais</label>
+                    
+                    @php
+                        $socialNetworks = $user->profile->social_networks;
+                        @endphp
+
+                    <label>Facebook</label>
+                    <input type="text" class="form-control" name="profile[social_networks][facebook]" value="{{array_key_exists('facebook', $socialNetworks) ? $socialNetworks['facebook'] : null}}" placeholder="Facebook">
+                    <label>Twitter</label>
+                    <input type="text" class="form-control" name="profile[social_networks][twitter]" value="{{array_key_exists('twitter', $socialNetworks) ? $socialNetworks['twitter'] : null}}" placeholder="Twitter">
+                    <label>Instagram</label>
+                    <input type="text" class="form-control" name="profile[social_networks][instagram]" value="{{array_key_exists('instagram', $socialNetworks) ? $socialNetworks['instagram'] : null}}" placeholder="Instagram">
                 </div>
                 @endif
 

@@ -23,9 +23,13 @@ class ProfileRequest extends FormRequest
      */
     public function rules()
     {
+        /***
+         * unique: primeiro parâmetro a tabela o segundo a coluna e o terceiro o ignore
+         * só vai validar se o id da tabela for diferente do id da sessão
+         */
         $rules =  [
             'user.name' => 'required',
-            'user.email' => 'required|email'
+            'user.email' => 'required|email|unique:users,email,' . auth()->id() //exclui esse usuário da validação
         ];
 
         /***
@@ -52,6 +56,7 @@ class ProfileRequest extends FormRequest
             'required' => 'Estes campos são obrigatórios!',
             'confirmed' => 'Confirmação de senha inválida!',
             'min' => 'A senha deve ter pelo menos :min caracteres',
+            'unique' => 'Este email já está sendo utilizado por outro usuário!',
         ];
     }
 }
