@@ -20,7 +20,7 @@ class CreateProfilesTable extends Migration
 
             $table->text('about')->nullable();
             $table->string('phone', 15)->nullable();
-            $table->text('social_networks');
+            $table->text('social_networks')->nullable();
 
             $table->timestamps();
 

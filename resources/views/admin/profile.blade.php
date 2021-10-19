@@ -15,22 +15,32 @@
 
                 <div class="form-group">
                     <label>Nome Completo</label>
-                    <input type="text" class="form-control" name="user[name]" value="{{$user->name}}">
+                    <input type="text" class="form-control @error('user.name') is-invalid @enderror" name="user[name]" value="{{$user->name}}">
+                    @error('user.name')
+                        <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
                 </div>
                 
                 <div class="form-group">
                     <label>E-mail</label>
-                    <input type="text" class="form-control" name="user[email]" value="{{$user->email}}">
+                    <input type="text" class="form-control @error('user.email') is-invalid @enderror" name="user[email]" value="{{$user->email}}">
+                    @error('user.email')
+                        <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label>Senha</label>
-                    <input type="text" class="form-control" name="user[password]">
+                    <input type="password" class="form-control @error('user.password') is-invalid @enderror" name="user[password]"
+                    placeholder="Se você quiser atualizar sua senha, preencha este campo e confirme abaixo.">
+                    @error('user.password')
+                        <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label>Confirmar Senha</label>
-                    <input type="text" class="form-control" name="user[password_confirm]">
+                    <input type="password" class="form-control" name="user[password_confirmation]">
                 </div>
 
                 @if ($user->profile)
@@ -55,6 +65,8 @@
                     <input type="text" class="form-control" name="">
                 </div>
                 @endif
+
+                <button class="btn btn-success btn-lg">Atualizar Perfil</button>
 
             </form>
         </div>
