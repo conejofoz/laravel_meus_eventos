@@ -11,8 +11,11 @@
 <body>
 
     @include('layouts.navbar')
-
+ 
     <div class="container">
+        <div class="row my-5">
+            @include('messages.bootstrap.messages')
+        </div>
         @yield('content')
     </div>
 
