@@ -38,6 +38,7 @@ class EventPhotoController extends Controller
         $event = \App\Models\Event::find($event);
         $event->photos()->createMany($uploadedPhotos);
 
+        \App\Services\MessageService::addFlash('success', 'Fotos adicionadas com sucesso!');
         return redirect()->back();
 
     }
@@ -64,6 +65,7 @@ class EventPhotoController extends Controller
 
         $onePhoto->delete();
 
+        \App\Services\MessageService::addFlash('success', 'Fotos removidas com sucesso!');
         return redirect()->back();
         
     }

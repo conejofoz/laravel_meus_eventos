@@ -13,8 +13,10 @@
     @include('layouts.navbar')
  
     <div class="container">
-        <div class="row my-5">
-            @include('messages.bootstrap.messages')
+        <div class="row">
+            <div class="col-12">
+                @include('messages.bootstrap.messages')
+            </div>
         </div>
         @yield('content')
     </div>

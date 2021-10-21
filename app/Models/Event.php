@@ -2,17 +2,34 @@
 
 namespace App\Models;
 
+
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+//use Illuminate\Support\Str;
+
+//use Spatie\Sluggable\HasSlug;
+//use Spatie\Sluggable\SlugOptions;
+
 
 class Event extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
+    //use HasSlug;
     
     protected $fillable = ['title', 'description', 'body', 'slug', 'start_event', 'banner'];
 
     protected $dates = ['start_event']; //para poder usar o format do carbon
+
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
 
 
 
@@ -38,10 +55,10 @@ class Event extends Model
      * Mutators
      */
 
-    public function setSlugAttribute($value)
+   /*  public function setSlugAttribute($value)
     {
         $this->attributes['slug'] = Str::slug($value);
-    }
+    } */
 
 
     /**
